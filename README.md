@@ -1,10 +1,9 @@
-# loanemi
-laravel  loan emi rest api 
+# loanemi 
 Laravel Loan EMI Rest Api
 
 Version 7.3
 
-This app is a Loan API app that will give you an idea of the working of APIS in Laravel.
+This app is a Loan API app for user can signup and apply for loan and pay weekly emi.
 Database setup
 
 Please open your localhost phpmyadmin / adminer, etc.
