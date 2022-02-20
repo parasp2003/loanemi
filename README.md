@@ -69,7 +69,7 @@ Note: You will receive JSON responses to every API request
     Expected Response: {    "success": true,    "data": {"LoanAmount": "$5000","Duration": "52 Weeks",
         "EMIAmount": "$97 Per Week"  },    "message": "Loan Approve successful!"}
 
- **** Step 5 :****  Now you need to pay EMIs you may visit /api/payemi Fields required for this request are loan_id, emi_amount
+  **Step 5:**   Now you need to pay EMIs you may visit /api/payemi Fields required for this request are loan_id, emi_amount
 
     Note: loan amount should be same as emi amount.
 
