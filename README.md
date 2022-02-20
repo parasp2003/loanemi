@@ -1,61 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Laravel Loan EMI Rest Api
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Version 7.3
 
-## About Laravel
+This app is a Loan API app that will give you an idea of the working of APIS in Laravel.
+Database setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Please open your localhost phpmyadmin / adminer, etc.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Navigate to folder SQL Schema File in this project and you will find a file named loanapi.sql  Import that SQL file in you DBs list
+Request Format and type
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+If you are using POSTMAN. Please follow the below process
 
-## Learning Laravel
+    Set request type to POST
+    Set your base request URL
+    Select body and then select x-www-form-urlencoded
+    Below are list of APIs with required fields
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    find collection from Postman_collections folder and import in postman
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+List of APIs
 
-## Laravel Sponsors
+Note: My local server was http://127.0.0.1:8000 You may change the settings as per you laravel environment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    http://127.0.0.1:8000/api/singup ( Pre Login )
+    http://127.0.0.1:8000/api/login ( Pre Login )
+    http://127.0.0.1:8000/api/applyloan ( Post Login )
+    http://127.0.0.1:8000/api/approveloan ( Post Login )
+    http://127.0.0.1:8000/api/payemi ( Post Login )
+    http://127.0.0.1:8000/api/logout ( Post Login )
 
-### Premium Partners
+Application Flow
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Note: You will receive JSON responses to every API request
 
-## Contributing
+    You are a new user so visit /api/register to register first.
+     Fields required for this request are name, email, password & confirm Password
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+     ( Pls note your password will be encrypted so kindly memorize it ) 
+    Expected Response: {"success": true,    "data": {"name": "xyz"},"message": "xyz Signup successfully."}
 
-## Code of Conduct
+    You need to now login so visit /api/login. Fields required for this request are email & password
+    Expect Response:{
+    "success": true,
+    "data": {
+        "token": "eyJ0eXAiOiJKV1QiL...", 
+    },
+    "message": "login successfully."
+     "name": "xyz user"
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    Note: token, you will need this for every API request in headers
+    Headers : 
+    Authorization : Bearer eyJ0eXAiOiJKV1QiL... 
+    Accept : Accept
 
-## Security Vulnerabilities
+    You may apply for a loan by visiting /api/applyloan Fields required for this request are  amount,duration
+    Note : duration is in week 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    Expected Response:{"success":true,"data":{"loan_id":1},"message":"Loan apply successful! Please Approve loan using loan id"}
 
-## License
+    If you want to approve your loan you may head to /api/approveloan Fields required for this request are   loan_id
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    Note: for loan_id ( Loan id which apply for loan approval)
+
+    Expected Response: {    "success": true,    "data": {"LoanAmount": "$5000","Duration": "52 Weeks",
+        "EMIAmount": "$97 Per Week"  },    "message": "Loan Approve successful!"}
+
+    Now you need to pay EMIs you may visit /api/payemi Fields required for this request are loan_id, emi_amount
+
+    Note: loan amount should be same as emi amount.
+
+    Expect Response ( For every valid EMI Payment ): {
+    "success": true,
+    "data": {
+        "LoanAmount": "$5000",
+        "Duration": "52 Weeks",
+        "EMIAmount": "$97 Per Week",
+        "PaidAmount": "$679 Paid",
+        "RemainingAmount": "$4321 Pending Amount"
+    },
+    "message": "Loan EMI Successfully Paid!"
+}
+
+ => Logout user 
+
+ 	 Headers : 
+    Authorization : Bearer eyJ0eXAiOiJKV1QiL... 
+    Accept : Accept
+
+    Expect Response   {"message": "Successfully logged out" }
