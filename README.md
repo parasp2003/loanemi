@@ -12,6 +12,8 @@ Request Format and type
 
 If you are using POSTMAN. Please follow the below process
 
+    Postman api collections folder Postman_collections 
+
     Set request type to POST
     Set your base request URL
     Select body and then select x-www-form-urlencoded
@@ -34,13 +36,13 @@ Application Flow
 
 Note: You will receive JSON responses to every API request
 
-    You are a new user so visit /api/register to register first.
+ **** Step 1:****  You are a new user so visit /api/register to register first.
      Fields required for this request are name, email, password & confirm Password
 
      ( Pls note your password will be encrypted so kindly memorize it ) 
     Expected Response: {"success": true,    "data": {"name": "xyz"},"message": "xyz Signup successfully."}
 
-    You need to now login so visit /api/login. Fields required for this request are email & password
+  **Step 2 :**  You need to now login so visit /api/login. Fields required for this request are email & password
     Expect Response:{
     "success": true,
     "data": {
@@ -50,24 +52,24 @@ Note: You will receive JSON responses to every API request
      "name": "xyz user"
 }
 
-    Note: token, you will need this for every API request in headers
+  **  Note: token, you will need this for every API request in headers
     Headers : 
     Authorization : Bearer eyJ0eXAiOiJKV1QiL... 
-    Accept : Accept
+    Accept : Accept **
 
-    You may apply for a loan by visiting /api/applyloan Fields required for this request are  amount,duration
+   **Step 3 :**  You may apply for a loan by visiting /api/applyloan Fields required for this request are  amount,duration
     Note : duration is in week 
 
     Expected Response:{"success":true,"data":{"loan_id":1},"message":"Loan apply successful! Please Approve loan using loan id"}
 
-    If you want to approve your loan you may head to /api/approveloan Fields required for this request are   loan_id
+  **Step 4 :**  If you want to approve your loan you may head to /api/approveloan Fields required for this request are   loan_id
 
     Note: for loan_id ( Loan id which apply for loan approval)
 
     Expected Response: {    "success": true,    "data": {"LoanAmount": "$5000","Duration": "52 Weeks",
         "EMIAmount": "$97 Per Week"  },    "message": "Loan Approve successful!"}
 
-    Now you need to pay EMIs you may visit /api/payemi Fields required for this request are loan_id, emi_amount
+ **** Step 5 :****  Now you need to pay EMIs you may visit /api/payemi Fields required for this request are loan_id, emi_amount
 
     Note: loan amount should be same as emi amount.
 
@@ -83,7 +85,7 @@ Note: You will receive JSON responses to every API request
     "message": "Loan EMI Successfully Paid!"
 }
 
- => Logout user 
+ **Step 6 :** Logout user 
 
  	 Headers : 
     Authorization : Bearer eyJ0eXAiOiJKV1QiL... 
