@@ -1,4 +1,4 @@
-# loanemi 
+# Loan EMI 
 Laravel Loan EMI Rest Api
 
 Version 7.3
@@ -12,7 +12,9 @@ Navigate to folder SQL Schema File in this project and you will find a file name
 Request Format and type
 
 If you are using POSTMAN. Please follow the below process
-
+    
+    find postman api collection from Postman_collections folder and import in postman
+       
     Set request type to POST
     Set your base request URL
     Select body and then select x-www-form-urlencoded
