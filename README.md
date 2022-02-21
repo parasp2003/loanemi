@@ -2,7 +2,7 @@ Laravel Loan EMI Rest Api
 
 Version 7.3
 
-
+========================================
 run below command in your www or html file
 
 Run git clone https://github.com/parasp2003/loanemi.git
@@ -12,7 +12,7 @@ Run composer update.
 Run php artisan serve.
 
 Go to link localhost:8000 OR 127.0.0.1:8000
-
+===================================================
 This app is a Loan API app that will give you an idea of the working of APIS in Laravel.
 Database setup
 
