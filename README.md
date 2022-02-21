@@ -5,7 +5,7 @@ Version 7.3
 
 run below command in your www or html file
 
-Run `git clone https://github.com/parasp2003/loanemi.git
+Run git clone https://github.com/parasp2003/loanemi.git
 
 Run composer update.
 
